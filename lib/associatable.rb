@@ -1,5 +1,7 @@
 require_relative 'searchable'
+require_relative 'dataq_object'
 require 'active_support/inflector'
+
 
 class AssocOptions
   attr_accessor(
@@ -46,4 +48,32 @@ class HasManyOptions < AssocOptions
   end
 end
 
+module Associatable
+  def belongs_to(name, options = {}) 
+    options = BelongsToOptions.new(name, options)
+    define_method(name) do
+      key_val = self.send(options.foreign_key)
+      options
+      .model_class
+      .where(:id => key_val)
+      .first
+    end 
+  end
+
+  def has_many(name, options = {})
+    options = HasManyOptions.new(name, self, options)
+    define_method(name) do
+      key_val = self.id
+      options
+      .model_class
+      .where(options.foreign_key => key_val)
+    end 
+  end
+
+end
+
+
+class DataQObject
+  extend Associatable
+end
 
