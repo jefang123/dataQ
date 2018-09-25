@@ -87,7 +87,7 @@ class DataQObject
   end
 
   def insert
-    new_id = Cat.all.length + 1 
+    new_id = self.class.all.length + 1 
     a = self.class.columns - [:id]
     col_names = a.join(",")
     question_marks = (["?"]*attributes_values.length).join(",")
