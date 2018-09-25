@@ -1,4 +1,4 @@
-= DataQ - Object-Relational Mapping for Rails 
+DataQ - Object-Relational Mapping for Rails 
 
 DataQ connects classes to relational database tables(SQL3) to establish a persistence layer for applications. By providing a DataQObject class as a base class, DataQ can provide mapping between classes and an existing table in the database. Such classes are referred to as "Models", which can also be connected through *associations*
 
