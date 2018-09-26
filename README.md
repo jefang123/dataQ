@@ -16,7 +16,7 @@ Features:
   Current associations: 
 
   belongs_to 
-  has_many
+  has_many 
   has_one_through 
 
 
