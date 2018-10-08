@@ -15,9 +15,9 @@ Features of DataQ are dependent on naming as it relies on class and assocition n
 
   Current associations: 
 
-  belongs_to 
-  has_many 
-  has_one_through 
+    * belongs_to 
+    * has_many 
+    * has_one_through 
 
 
 ### Public API: 
