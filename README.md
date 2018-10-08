@@ -13,7 +13,7 @@ Features of DataQ are dependent on naming as it relies on class and assocition n
     has_one :home 
   end
 
-  Current associations: 
+  #### Current associations: 
 
     * belongs_to 
     * has_many 
