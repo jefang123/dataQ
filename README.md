@@ -8,10 +8,12 @@ Features of DataQ are dependent on naming as it relies on class and assocition n
 
 * Associations between objects can be defined by class methods 
 
+  ```
   class Cat < DataQObject 
     belongs_to :owner
     has_one :home 
   end
+  ```
 
   #### Current associations: 
 
