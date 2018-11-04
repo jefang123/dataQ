@@ -5,7 +5,7 @@ DataQ connects classes to relational database tables(SQL3) to establish a persis
 Features of DataQ are dependent on naming as it relies on class and assocition names to create mappings between database and models. 
 
 ## Features: 
-
+<!-- bundle install -->
 <!-- cat cats.sql | sqlite3 cats.db -->
 
 * Associations between objects can be defined by class methods 

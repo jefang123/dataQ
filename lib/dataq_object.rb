@@ -123,13 +123,6 @@ class DataQObject
   end
 end
 
-
-class Cat < DataQObject
-end
-
-Cat.finalize!
-
-
 module Searchable
   def where(params)
     where_line = params.map { |key, value| " #{key} = ? " }.join("AND")
@@ -245,3 +238,17 @@ class DataQObject
   extend Associatable
   extend Searchable
 end
+
+
+class Cat < DataQObject
+end
+
+class Human < DataQObject
+end 
+
+class House < DataQObject
+end 
+
+Cat.finalize!
+Human.finalize!
+House.finalize!
