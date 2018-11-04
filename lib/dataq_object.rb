@@ -128,3 +128,27 @@ class Cat < DataQObject
 end
 
 Cat.finalize!
+
+
+module Searchable
+  def where(params)
+    where_line = params.map { |key, value| " #{key} = ? " }.join("AND")
+    values = params.values
+    
+    a = DBConnection.execute(<<-SQL, *values)
+      SELECT
+        *
+      FROM
+        #{ self.table_name }
+      WHERE
+        #{ where_line }
+    SQL
+
+    return [] if a.empty?
+    parse_all(a)
+  end
+end
+
+class DataQObject
+  extend Searchable
+end
