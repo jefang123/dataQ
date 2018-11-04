@@ -4,7 +4,7 @@ require 'active_support/inflector'
 class DataQObject
   def self.columns
     return @columns if @columns 
-    a = DBconnection.execute2(<<-SQL)
+    a = DBConnection.execute2(<<-SQL)
     SELECT 
       *
     FROM
@@ -39,7 +39,7 @@ class DataQObject
   end
 
   def self.all
-    a = DBConnection.execture(<<-SQL)
+    a = DBConnection.execute(<<-SQL)
     SELECT 
       *
     FROM 
@@ -122,3 +122,9 @@ class DataQObject
     end
   end
 end
+
+
+class Cat < DataQObject
+end
+
+Cat.finalize!

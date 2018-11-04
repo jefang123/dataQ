@@ -6,6 +6,8 @@ Features of DataQ are dependent on naming as it relies on class and assocition n
 
 ## Features: 
 
+<!-- cat cats.sql | sqlite3 cats.db -->
+
 * Associations between objects can be defined by class methods 
 
   ```
