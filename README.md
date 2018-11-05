@@ -33,29 +33,51 @@ Current Classes in the database:
 * Class.all - Returns all objects in the database of Class 
 * Class.first - Returns first object in the database of Class 
 * Class.columns - Returns current columns in database of Class 
+  ```
+  Cat.columns 
+
+  =>[:id, :name, :owner_id]
+  ```
+
 * Class.where(params) - Returns filtered results based on params of Class
+  ```
+  Cat.where(:id => 1)
+
+  => Cat @attributes={:id=>1, :name=>"Breakfast", :owner_id=>1}
+  ```
 
 
 
-* Specific Associations
+### Specific Associations
 
   ```
-  class Cat < DataQObject 
-    belongs_to :owner
-    has_one :home 
+  class Cat < DataQObject
+    belongs_to :human, foreign_key: :owner_id
+    has_one_through :home, :human, :house
   end
+
+  class Human < DataQObject
+    has_many :cats, foreign_key: :owner_id
+    belongs_to :house
+  end 
+
+  class House < DataQObject
+    has_many :humans
+  end 
   ```
 
-  #### Current associations: 
+#### Cat 
 
-    * belongs_to 
-    * has_many 
-    * has_one_through 
+* Cat.first.human 
+* Cat.first.home 
 
+#### Human 
 
-### Public API: 
+* Human.first.cats
+* Human.first.house 
 
-* where(params) - Query that filters through database with given parameters.
+#### House 
 
-  ```Cat.where(:owner_id => 1)``` 
+* House.first.humans
+  
 
