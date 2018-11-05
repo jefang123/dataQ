@@ -4,11 +4,40 @@ DataQ connects classes to relational database tables(SQL3) to establish a persis
 
 Features of DataQ are dependent on naming as it relies on class and assocition names to create mappings between database and models. 
 
-## Features: 
-<!-- bundle install -->
-<!-- cat cats.sql | sqlite3 cats.db -->
+## Instructions for use:
+After downloading, run 
+```
+bundle install
+``` 
+to install required gems such as pry
 
-* Associations between objects can be defined by class methods 
+In pry run 
+
+```
+pry(main) > load 'lib/dataq_object.rb'
+``` 
+
+A cats.sql file is provided for a default database. To set up the database manually run in command line:
+
+``` 
+cat cats.sql | sqlite3 cats.db
+``` 
+
+Current Classes in the database: 
+  * Cat 
+  * Human 
+  * House
+
+## Methods: 
+
+* Class.all - Returns all objects in the database of Class 
+* Class.first - Returns first object in the database of Class 
+* Class.columns - Returns current columns in database of Class 
+* Class.where(params) - Returns filtered results based on params of Class
+
+
+
+* Specific Associations
 
   ```
   class Cat < DataQObject 

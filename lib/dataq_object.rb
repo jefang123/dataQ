@@ -69,6 +69,10 @@ class DataQObject
     self.parse_all(a).first
   end
 
+  def self.first 
+    self.all.first
+  end 
+
   def initialize(params = {})
     params.each do |key, value|
       unless self.class.columns.include?(key.to_sym)
@@ -160,7 +164,7 @@ end
 
 class BelongsToOptions < AssocOptions
   def initialize(name, options = {})
-
+    name = name.to_s
     defaults = {
       :foreign_key => "#{name}_id".to_sym,
       :primary_key => :id, 
@@ -175,9 +179,10 @@ end
 
 class HasManyOptions < AssocOptions
   def initialize(name, self_class_name, options = {})
+    name = name.to_s
  
     defaults = {
-      :foreign_key => "#{ self_class_name.downcase }_id".to_sym,
+      :foreign_key => "#{ self_class_name.to_s.downcase }_id".to_sym,
       :primary_key => :id, 
       :class_name => name.singularize.camelize
     }
@@ -241,12 +246,17 @@ end
 
 
 class Cat < DataQObject
+  belongs_to :human, foreign_key: :owner_id
+  has_one_through :home, :human, :house
 end
 
 class Human < DataQObject
+  has_many :cats, foreign_key: :owner_id
+  belongs_to :house
 end 
 
 class House < DataQObject
+  has_many :humans
 end 
 
 Cat.finalize!
